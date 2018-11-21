@@ -17,7 +17,7 @@
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary right"><i class="fas fa-shopping-cart"></i> Acheter</a>
+            <a href="<?php echo URLROOT; ?>/products/show/<?php echo $product->productId; ?>" class="btn btn-primary right"><i class="fas fa-shopping-cart"></i> Acheter</a>
           </div>
         </div>    
       </div>
