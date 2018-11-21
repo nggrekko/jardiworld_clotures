@@ -1,23 +1,12 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-<?php echo $data['product']->img_big ;?>
-<?php echo "success";?>
+
 <?php print_r($data) ;?>
-
-<?php echo dirname(__FILE__); ?>
-<img src="https://www.google.fr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="alter 1"/>
-<img src="50010-big.jpg" alt="alter 2"/>
-<img src='50010-big.jpg' alt="alter 2"/>
-<img src="../50010-big.jpg" alt="alter 3"/>
-<img src="public/assets/50010-big.jpg" alt="alter 4"/>
-<img src="/public/assets/50010-big.jpg" alt="alter 4"/>
-<img src="images/banana1.jpg"/>
-
 
 <div class="card">
 	<div class="row">
 		<aside class="col-sm-5 border-right">
             
-           <img src="/public/assets/<?php echo $data['product']->img_big ?>" alt="Card image cap">
+           <img src="<?php echo URLROOT; ?>/assets/<?php echo $data['product']->img_big ?>" alt="Card image cap">
 
     </aside>
     
