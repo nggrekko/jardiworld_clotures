@@ -29,6 +29,26 @@
       return $results;
     }
 
+    public function getProductById($id) {
+      $this->db->query('SELECT *, 
+                        products.id as productId, 
+                        products.name as productName,
+                        categories.id as categoryId, 
+                        categories.name as categoryName 
+                        FROM products 
+                        INNER JOIN categories 
+                        ON products.category_id = categories.id
+                        WHERE products.id = :id');
+
+      $this->db->bind(':id', $id);
+
+
+      $row = $this->db->single();
+      
+      return $row;
+    }
+
+
     /*
     public function getPosts(){
       $this->db->query('SELECT *,

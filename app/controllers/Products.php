@@ -21,23 +21,19 @@
         'products' => $products
       ];
 
-      
-
       $this->view('products/index', $data);
     }
 
-    /*
+    
     public function show($id){
-      $post = $this->productModel->getProductById($id);
-      $user = $this->userModel->getUserById($post->user_id);
+      $product = $this->productModel->getProductById($id);
 
       $data = [
-        'post' => $post,
-        'user' => $user
+        'product' => $product
       ];
 
       $this->view('products/show', $data);
     }
-    */
+    
 
   }
