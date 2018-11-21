@@ -1,0 +1,4 @@
+# https://www.daftlogic.com/information-comments-in-htaccess.htm
+
+# désactive l'exploration
+Options -Indexes

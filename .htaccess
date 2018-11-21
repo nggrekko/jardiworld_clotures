@@ -1,0 +1,7 @@
+# https://www.daftlogic.com/information-comments-in-htaccess.htm
+
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  RewriteRule ^$ public/ [L]
+  RewriteRule (.*) public/$1 [L]
+</IfModule>
