@@ -34,6 +34,6 @@
 
       $this->view('products/show', $data);
     }
-    
+
 
   }

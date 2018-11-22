@@ -5,6 +5,7 @@
         <?php flash('register_success'); ?>
         <h2>Login</h2>
         <p>Please fill in your credentials to log in</p>
+
         <form action="<?php echo URLROOT; ?>/users/login" method="post">
           <div class="form-group">
             <label for="email">Email : <sup>*</sup></label>
@@ -25,6 +26,7 @@
             </div>
           </div>
         </form>
+        
       </div>
     </div>
   </div>
