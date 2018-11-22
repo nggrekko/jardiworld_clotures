@@ -178,19 +178,12 @@
       redirect('users/login');
     }
 
-    // public function basket() {
 
-    //   if(!isset($_SESSION['basket'])){
-    //     $_SESSION['basket']=array();
-    //   }
-
-    //   $data = $_SESSION['basket'];
-
-    //   // Load view
-    //   $this->view('users/basket', $data);
-    // }
-
-    public function addtocart() {
+    public function basket() {
+      // if(!isset($_SESSION['basket'])){
+      //   $_SESSION['basket']=array();
+      // }
+      $data = $_SESSION['basket'];
 
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
         // Process form
@@ -203,37 +196,14 @@
           'quantity' => trim($_POST['quantity']),      
         ];
 
-        $newItem2 = [
-          'id' => 2,
-          'quantity' => 4,      
-        ];
-
-        $data = array();
-        array_push($data,$newItem,$newItem2);
-
-        print_r($data);
-
-        foreach ($data as $item) {
-          echo 'id : ' . $item['id'] . ' quantity : ' . $item['quantity'] . '<br>';
+        array_push($data,$newItem);
+        $_SESSION['basket'] = $data;
+        
+        redirect('products/show/' . $newItem['id']);
       }
-        // if(!isset($_SESSION['basket'])){
-        //   $_SESSION['basket']=array();
-        // }
-  
-        // $data = $_SESSION['basket'];
-        // $data[$id] = 3;
-  
-        // // Load view
-        // $this->view('users/basket', $data);
-
+      else {
+        $this->view('users/basket', $data);
       }
-    
     }
-
-    public function basket() {
-      $data = [];
-      $this->view('users/basket', $data);
-    }
-
     
   }

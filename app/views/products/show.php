@@ -82,7 +82,7 @@
           <i class="fas fa-shopping-cart"></i> Add to cart
         </a>
 
-        <form action="<?php echo URLROOT; ?>/users/addtocart" method="post">
+        <form action="<?php echo URLROOT; ?>/users/basket" method="post">
           <input type="id" name="id" class="form-control form-control-lg" value="<?php echo $data['product']->productId ?>">
           <input type="quantity" name="quantity" class="form-control form-control-lg" value="3">
           <input type="submit" value="GO" class="btn btn-success btn-block">
