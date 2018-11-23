@@ -46,9 +46,9 @@
                 <dt>Quantity: </dt>
                 <dd>
                   <select class="form-control form-control-sm" style="width:70px;">
-                    <option> 1 </option>
-                    <option> 2 </option>
-                    <option> 3 </option>
+                    <option> --1 </option>
+                    <option> --2 </option>
+                    <option> --3 </option>
                   </select>
                 </dd>
               </dl>  <!-- item-property .// -->
@@ -83,9 +83,19 @@
         </a>
 
         <form action="<?php echo URLROOT; ?>/users/basket" method="post">
-          <input type="id" name="id" class="form-control form-control-lg" value="<?php echo $data['product']->productId ?>">
-          <input type="quantity" name="quantity" class="form-control form-control-lg" value="3">
+        
+        <?php if($data['product']->stock>0) : ?>
+          <select type="quantity" name="quantity">
+            <?php for ($i = 1; $i <= $data['product']->stock ; $i++) : ?>
+              <option value="<?php echo $i?>"><?php echo $i?></option>
+            <?php endfor; ?>
+          </select>
           <input type="submit" value="GO" class="btn btn-success btn-block">
+        <?php else : ?>
+          <span>Rupture de stock</span>
+        <?php endif; ?>
+
+          
         </form>
 
 
