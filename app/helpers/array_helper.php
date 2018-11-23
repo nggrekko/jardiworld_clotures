@@ -36,3 +36,13 @@
 
     return false;
   }
+
+  function getListValuesToQuery($array,$key) {
+    $arrayValues = array();
+    foreach ($array as $subarray) {
+      array_push($arrayValues,$subarray[$key]);
+    }
+    $arrayValues = array_values($arrayValues);
+    $arrayValues = implode(",",$arrayValues);
+    return $arrayValues;
+  }

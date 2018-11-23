@@ -2,16 +2,16 @@
 
 <?php // print_r($data); ?>
 
-<form class="pull-right" action="<?php echo URLROOT; ?>/users/remove_all" method="post">
-    <input type="submit" value="Delete All" class="btn btn-danger">
-  </form>
+<form class="pull-right" action="<?php echo URLROOT; ?>/basket/remove_all" method="post">
+  <input type="submit" value="Delete All" class="btn btn-danger">
+</form>
 
 <?php if(empty($data)) : ?>
   <h1>Panier vide</h1>
 <?php else : ?>
   <?php foreach($data as $item) : ?>
     <p><?php echo 'id : ' . $item['productId'] . ' quantity : ' . $item['quantity'] ?></p>
-    <a href="<?php echo URLROOT; ?>/users/remove_item_from_cart/<?php echo $item['productId']; ?>" class="btn btn-dark">delete2</a>
+    <a href="<?php echo URLROOT; ?>/basket/remove_item_from_cart/<?php echo $item['productId']; ?>" class="btn btn-dark">delete2</a>
 
 
     <select name="quantity">

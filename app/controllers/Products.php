@@ -26,6 +26,7 @@
 
     
     public function show($id){
+
       $product = $this->productModel->getProductById($id);
 
       $data = [

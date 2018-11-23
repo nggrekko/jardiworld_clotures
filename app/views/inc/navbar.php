@@ -24,7 +24,7 @@
               <a class="nav-link" href="#">Welcome <?php echo $_SESSION['user_name']; ?></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo URLROOT; ?>/users/basket">Panier</a>
+              <a class="nav-link" href="<?php echo URLROOT; ?>/basket/index">Panier</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout">Logout</a>
