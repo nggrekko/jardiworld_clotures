@@ -61,10 +61,10 @@
       }
     }
 
+    // Add POST item to basket
     public function addToBasket() {
-      echo 'addToBasket <br>';
+
       if (isLoggedIn()) {
-        echo 'addToBasket isLoggedIn <br>';
 
         // Sanitize POST data
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -75,13 +75,9 @@
           'quantity' => trim($_POST['quantity']),      
         ];
 
-        echo 'basket : ';
-        print_r($_SESSION['basket']);
-        echo '<br>';
-
         // basket is empty
         if (empty($_SESSION['basket'])) {
-          echo 'if empty($_SESSION[]) <br>';
+
           array_push($_SESSION['basket'],$newItem);
           print_r($_SESSION['basket']);
           
@@ -111,29 +107,69 @@
             array_push($_SESSION['basket'],$newItem);
           }
 
-          // $_SESSION['basket'] = $data;
-          print_r($_SESSION['basket']);
-
           // redirect('users/basket');
           redirect('products/show/' . $newItem['id']);
         }
       }
       // not loggedin
       else {
-        echo 'addToBasket NOT isLoggedIn <br>';
         redirect('user/login');
       }
     }
 
+    public function updateQuantity() {
+      if (isLoggedIn()) {
+
+        // Sanitize POST data
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+        // Get new product id and quantity
+        $newItem = [
+          'id' => trim($_POST['id']),
+          'quantity' => trim($_POST['quantity']),      
+        ];
+
+        $found = false;
+        $index = 0;
+
+        // search if basket contains item's id
+        foreach ($_SESSION['basket'] as $item) {
+          if ($item['id']==$newItem['id']) {
+            $found = true;
+            break;
+          }
+          $index++;
+        }
+
+        // id found in basket, update quantity
+        if ($found) {
+          $_SESSION['basket'][$index]['quantity'] = $newItem['quantity'];
+        } 
+        else {
+          array_push($_SESSION['basket'],$newItem);
+        }
+
+        // redirect('users/basket');
+        redirect('basket/index');
+        
+      }
+      // not loggedin
+      else {
+        redirect('user/login');
+      }
+    }
+
+
     // Delete all items from basket
-    public function remove_all() {
+    public function removeAll() {
       unset($_SESSION['basket']);
       $_SESSION['basket']=array();
       redirect('basket/index');
     }
 
+
     // Delete item from basket
-    public function remove_item_from_cart($id) {
+    public function removeItemFromBasket($id) {
       echo $id . '<br>';
       print_r($_SESSION['basket']); echo '<br>';
       $data = $_SESSION['basket'];
