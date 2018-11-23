@@ -13,11 +13,11 @@
           <img class="card-img-top" src="assets/<?php echo $product->img_big ?>" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title"><?php echo $product->productName ?></h5>
-            <p class="card-text">Prix : &euro;</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text">Prix : <?php echo $product->prix ?> &euro;</p>
+            <p class="card-text"><small class="text-muted"><?php echo $product->consultations; ?> consultations</small></p>
           </div>
           <div class="card-footer">
-            <a href="<?php echo URLROOT; ?>/products/show/<?php echo $product->productId; ?>" class="btn btn-primary right"><i class="fas fa-shopping-cart"></i> Acheter</a>
+            <a href="<?php echo URLROOT; ?>/products/show/<?php echo $product->productId; ?>" class="btn btn-primary right"><i class="fas fa-shopping-cart"></i> Voir</a>
           </div>
         </div>    
       </div>

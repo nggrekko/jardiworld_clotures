@@ -90,4 +90,14 @@
       return $results;
     }
 
+    public function addProductConsultation($id) {
+      $this->db->query('UPDATE products 
+                        SET consultations = consultations + 1 
+                        WHERE products.id = :id');
+  
+      $this->db->bind(':id', $id);
+      $row = $this->db->single();
+      return $row;
+    }
+
   }

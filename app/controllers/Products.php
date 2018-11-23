@@ -33,6 +33,16 @@
         'product' => $product
       ];
 
+      // update consultations
+
+      try {
+        $response = $this->productModel->addProductConsultation($id);
+        echo $response;
+      } catch (Exception $e) {
+        // echo 'Exception reçue : ',  $e->getMessage(), "\n";
+      }
+      
+
       $this->view('products/show', $data);
     }
 
