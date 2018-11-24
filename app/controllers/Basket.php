@@ -203,6 +203,9 @@
 
               $this->productModel->updateStock($item['productId'],$quantity);
               echo '<br>stock update done';
+
+              $this->productModel->updateSales($item['productId'],$quantity);
+              echo '<br>sales update done';
             }
 
         

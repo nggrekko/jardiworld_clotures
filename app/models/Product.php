@@ -119,4 +119,19 @@
       }
     }
 
+    public function updateSales($id,$quantity) {
+      $this->db->query('UPDATE products 
+                        SET ventes = ventes + :quantity
+                        WHERE products.id = :id');
+
+      $this->db->bind(':id', $id);
+      $this->db->bind(':quantity', $quantity);
+      // Execute
+      if($this->db->execute()){
+      return true;
+      } else {
+      return false;
+      }
+    }
+
   }
