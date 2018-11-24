@@ -34,4 +34,13 @@
     }
   }
 
+  function isEmptyBasket() {
+    return empty($_SESSION['basket']);
+  }
+
+
+  function cleanBasket() {
+    $_SESSION['basket'] =array();
+  }
+
   

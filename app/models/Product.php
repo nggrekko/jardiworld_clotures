@@ -96,8 +96,27 @@
                         WHERE products.id = :id');
   
       $this->db->bind(':id', $id);
-      $row = $this->db->single();
-      return $row;
+      // Execute
+      if($this->db->execute()){
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    public function updateStock($id,$quantity) {
+      $this->db->query('UPDATE products 
+                        SET stock = stock - :quantity
+                        WHERE products.id = :id');
+
+      $this->db->bind(':id', $id);
+      $this->db->bind(':quantity', $quantity);
+      // Execute
+      if($this->db->execute()){
+      return true;
+      } else {
+      return false;
+      }
     }
 
   }

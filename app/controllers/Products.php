@@ -37,7 +37,7 @@
 
       try {
         $response = $this->productModel->addProductConsultation($id);
-        echo $response;
+        // echo $response;
       } catch (Exception $e) {
         // echo 'Exception reçue : ',  $e->getMessage(), "\n";
       }

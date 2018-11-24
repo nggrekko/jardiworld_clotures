@@ -17,6 +17,7 @@
     return array_map('convertObjectToArray', (array) $object);
   }
 
+  // check if array has a certain key
   function hasKey(array $arr, $key) {
 
     // is in base array?
@@ -37,6 +38,8 @@
     return false;
   }
 
+  // get a list of value from key type in array
+  // this list is converted in this format '#value,#value,#value'
   function getListValuesToQuery($array,$key) {
     $arrayValues = array();
     foreach ($array as $subarray) {

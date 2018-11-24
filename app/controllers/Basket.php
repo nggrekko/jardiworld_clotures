@@ -1,43 +1,30 @@
 <?php
   class Basket extends Controller {
+
     public function __construct(){
       $this->userModel = $this->model('User');
       $this->productModel = $this->model('Product');
+      $this->orderModel = $this->model('Order');
     }
-
-    
 
     public function index() {
       if (isLoggedIn()) {
-        echo 'basket <br>';
 
         // init empty basket
         if(empty($_SESSION['basket'])) {
-          echo 'empty basket<br>';
+
           $this->view('basket/index', $_SESSION['basket']);
         }
 
         else {
-          echo 'else <br>';
-          print_r($_SESSION['basket']);
+
           $data = $_SESSION['basket'];
 
           $idList = getListValuesToQuery($data,'id');
 
           $dataset = $this->productModel->getProductsByIdList($idList);
-          
-          echo '<br>$data : ';
-          print_r($data); echo '<br>';
-          
-          echo '<br>$dataset : ';
-          print_r($dataset); echo '<br>';
 
-          // convert object to array
-          // $dataset = json_decode(json_encode($dataset), true);
           $dataset = convertObjectToArray($dataset);
-
-          echo '<br>$dataset array : ';
-          print_r($dataset); echo '<br>';
 
           $dataset2 = array();
           
@@ -45,7 +32,7 @@
             foreach ($data as $item2) {
               if ($item['productId'] == $item2['id']) {
                 $item += array('quantity' => $item2['quantity']);
-                echo '<br>found<br>';
+                // echo '<br>found<br>';
                 array_push($dataset2,$item);
                 break;
               }
@@ -53,6 +40,7 @@
           }
           echo '<br>$dataset2 trans: ';
           print_r($dataset2); echo '<br>';
+          $_SESSION['basket'] = $dataset2;
           $this->view('basket/index', $dataset2);
         }
       }
@@ -183,6 +171,68 @@
       redirect('users/basket');
     }
 
+
+    // Order the basket
+    public function order() {
+      if (isLoggedIn()) {
+
+        if (!isEmptyBasket()) {
+          print_r($_SESSION['basket']);
+
+          // create order
+          try {
+            $nbProducts = count($_SESSION['basket']);
+            $totalPrice = getTotalPrice();
+            $data = ['nbProducts' => $nbProducts,'totalPrice' => $totalPrice,'idUser' => ($_SESSION['user_id'])];
+
+            // create order and get order id
+            $idOrder = $this->orderModel->createOrder($data);
+            echo '<br>Order id : ' . $idOrder . ', Total price : ' . $totalPrice . ', Count : '.$nbProducts;
+
+            // create products order
+            foreach($_SESSION['basket'] as $item) {
+              $idProduct = $item['productId'];
+              $price = $item['prix'];
+              $quantity = $item['quantity'];
+              $data = ['idOrder' => $idOrder,'price' => $price,'quantity' => $quantity,'idProduct' => $idProduct];
+
+              $this->orderModel->createOrderProduct($data);
+              echo '<br>idOrder : ' . $idOrder . ', idOrder : ' . $idOrder . ', prix : '.$price . ', quantity : '.$quantity;
+
+              // update stocks
+
+              $this->productModel->updateStock($item['productId'],$quantity);
+              echo '<br>stock update done';
+            }
+
+        
+
+          } catch (Exception $e) {
+            echo 'Exception reçue : ',  $e->getMessage(), "\n";
+          }
+
+
+          // update quantity
+
+
+          // empty the basket
+          // cleanBasket();
+          // redirect('basket/index');
+        }
+        else {
+          echo 'basket empty';
+          redirect('basket/index');
+        }
+
+        // redirect('users/basket');
+        // redirect('basket/index');
+        
+      }
+      // not loggedin
+      else {
+        redirect('user/login');
+      }
+    }
     
   }
 

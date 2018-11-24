@@ -27,6 +27,8 @@
       </form>
 
   <?php endforeach; ?>
+
+  <a href="<?php echo URLROOT; ?>/basket/order" class="btn btn-lg btn-primary text-uppercase"> Commander </a>
 <?php endif; ?>
 
 
