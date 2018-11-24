@@ -11,6 +11,9 @@
   // URL Root
   define('URLROOT', 'http://localhost/jardiworld_clotures');
 
+  // Assets Root
+  define('ASSETSROOT', 'http://localhost/jardiworld_clotures/public/assets/');
+
   // Site Name
   define('SITENAME', 'Jardiworld Clotures');
   

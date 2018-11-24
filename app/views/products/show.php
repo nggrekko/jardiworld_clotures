@@ -6,7 +6,7 @@
 	<div class="row">
 
 		<aside class="col-sm-5 border-right">
-      <img src="<?php echo URLROOT; ?>/assets/<?php echo $data['product']->img_big ?>" alt="Card image cap">
+      <img src="<?php echo ASSETSROOT . $data['product']->img_big ?>" alt="Card image cap">
     </aside>
     
     <aside class="col-sm-7">

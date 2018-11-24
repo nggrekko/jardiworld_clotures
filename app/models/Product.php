@@ -90,6 +90,23 @@
       return $results;
     }
 
+    public function getProductsBySales($limit) {
+      $this->db->query('SELECT *, 
+                        products.id as productId, 
+                        products.name as productName,
+                        categories.id as categoryId, 
+                        categories.name as categoryName 
+                        FROM products 
+                        INNER JOIN categories 
+                        ON products.category_id = categories.id
+                        ORDER BY ventes DESC
+                        LIMIT :limit');
+      
+      $this->db->bind(':limit', $limit);
+      $results = $this->db->resultSet();
+      return $results;
+    }
+
     public function addProductConsultation($id) {
       $this->db->query('UPDATE products 
                         SET consultations = consultations + 1 

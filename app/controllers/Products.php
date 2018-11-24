@@ -13,6 +13,22 @@
     public function index(){
       // Get products
       // $posts = $this->postModel->getProducts();
+      // $categories = $this->productModel->getCategories();
+      // $products = $this->productModel->getProducts();
+
+      // $data = [
+      //   'categories' => $categories,
+      //   'products' => $products
+      // ];
+
+      $data = $this->productModel->getProductsBySales(3);
+      
+      $this->view('products/index', $data);
+    }
+
+    public function catalogue(){
+      // Get products
+      // $posts = $this->postModel->getProducts();
       $categories = $this->productModel->getCategories();
       $products = $this->productModel->getProducts();
 
@@ -21,7 +37,7 @@
         'products' => $products
       ];
 
-      $this->view('products/index', $data);
+      $this->view('products/catalogue', $data);
     }
 
     

@@ -1,28 +1,46 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
-<?php foreach($data['categories'] as $category) : ?>
-  <p><?php echo $category->name; ?></p>
-<?php endforeach; ?>
 
 
-<div class="card-group">
-  
-    <?php foreach($data['products'] as $product) : ?>
-      <div class="col-md-3 mb-4">
-        <div class="card" style="max-width:250px">
-          <img class="card-img-top" src="assets/<?php echo $product->img_big ?>" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $product->productName ?></h5>
-            <p class="card-text">Prix : <?php echo $product->prix ?> &euro;</p>
-            <p class="card-text"><small class="text-muted"><?php echo $product->consultations; ?> consultations</small></p>
-          </div>
-          <div class="card-footer">
-            <a href="<?php echo URLROOT; ?>/products/show/<?php echo $product->productId; ?>" class="btn btn-primary right"><i class="fas fa-shopping-cart"></i> Voir</a>
-          </div>
-        </div>    
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+
+  <div class="carousel-inner">
+    <?php foreach($data as $product) : ?>
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="<?php echo ASSETSROOT . $product->img_big ?>" alt="First slide">
+        <div class="carousel-caption d-none d-md-block">
+          <h5><?php echo $product->productName ?></h5>
+          <p><?php echo $product->description ?></p>
+        </div>
       </div>
     <?php endforeach; ?>
-  
+  </div>
+
+  <!-- <div class="carousel-inner"> -->
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="..." alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="..." alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="..." alt="Third slide">
+    </div>
+  <!-- </div> -->
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>
