@@ -8,13 +8,13 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo URLROOT; ?>">Home</a>
+            <a class="nav-link" href="<?php echo URLROOT; ?>">Accueil</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo URLROOT; ?>/products/catalogue">Catalogue</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo URLROOT; ?>/pages/about">About</a>
+            <a class="nav-link" href="<?php echo URLROOT; ?>/pages/about">A propos</a>
           </li>
         </ul>
         
@@ -27,14 +27,14 @@
               <a class="nav-link" href="<?php echo URLROOT; ?>/basket/index">Panier</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout">Logout</a>
+              <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout">Se déconnecter</a>
             </li>
           <?php else : ?>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo URLROOT; ?>/users/register">Register</a>
+              <a class="nav-link" href="<?php echo URLROOT; ?>/users/register">S'enregistrer</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo URLROOT; ?>/users/login">Login</a>
+              <a class="nav-link" href="<?php echo URLROOT; ?>/users/login">Se connecter</a>
             </li>
           <?php endif; ?>
         </ul>

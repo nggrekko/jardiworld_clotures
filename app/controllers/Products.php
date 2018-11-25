@@ -21,7 +21,13 @@
       //   'products' => $products
       // ];
 
-      $data = $this->productModel->getProductsBySales(6);
+      $sales = $this->productModel->getProductsBySales(6);
+      $consultations = $this->productModel->getProductsByconsultations(6);
+
+      $data = [
+        'sales' => $sales,
+        'consultations' => $consultations
+      ];
       
       $this->view('products/index', $data);
     }
@@ -38,6 +44,32 @@
       ];
 
       $this->view('products/catalogue', $data);
+    }
+
+    public function search(){
+
+      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+      // Init data
+      $keyword = trim($_POST['search']);
+      echo 'keyword : ' . $keyword;
+
+      try {
+        $categories = $this->productModel->getCategories();
+        $products = $this->productModel->getProductsByKeyword($keyword);
+        print_r($products);
+        $data = [
+          'categories' => $categories,
+          'products' => $products,
+          'keyword' => $keyword
+        ];
+  
+        $this->view('products/search', $data);
+      } 
+      catch (Exception $e) {
+        echo 'Exception : ' . $e->getMessage();
+      }
+
     }
 
     
