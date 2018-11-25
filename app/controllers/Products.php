@@ -21,7 +21,7 @@
       //   'products' => $products
       // ];
 
-      $data = $this->productModel->getProductsBySales(3);
+      $data = $this->productModel->getProductsBySales(6);
       
       $this->view('products/index', $data);
     }

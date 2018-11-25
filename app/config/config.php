@@ -14,6 +14,12 @@
   // Assets Root
   define('ASSETSROOT', 'http://localhost/jardiworld_clotures/public/assets/');
 
+  // CSS Root
+  define('CSSROOT', 'http://localhost/jardiworld_clotures/public/css/style.css');
+
+  // JS Root
+  define('JSROOT', 'http://localhost/jardiworld_clotures/public/js/main.js');
+
   // Site Name
   define('SITENAME', 'Jardiworld Clotures');
   

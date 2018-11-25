@@ -12,11 +12,11 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   
   <!-- custom css -->
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
+  <link rel="stylesheet" href="<?php echo CSSROOT; ?>">
 
   <title><?php echo SITENAME; ?></title>
 </head>
 <body>
   <?php require APPROOT . '/views/inc/navbar.php'; ?>
-  <div class="container">
+  <div class="container bg-container-color pt-1">
   
