@@ -1,7 +1,20 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
+
+<!-- Category dropdown -->
+<div class="btn-group">
+  <button class="btn btn-dark btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sélectionner une catégorie
+  </button>
+  <div class="dropdown-menu">
+    <?php foreach($data['categories'] as $category): ?>
+      <a class="dropdown-item" href="<?php echo URLROOT; ?>/products/category/<?php echo $category->name ?>"> <?php echo $category->name ?></a>
+    <?php endforeach ; ?>
+  </div>
+</div>
+
 <!-- Search bar -->
-<div class="row justify-content-center mb-4">
+<div class="row mb-4">
     <div class="col-12 col-md-10 col-lg-8">
         <form class="card card-sm" action="<?php echo URLROOT; ?>/products/search" method="post">
             <div class="card-body row no-gutters align-items-center py-2">
@@ -22,6 +35,7 @@
     </div>
     <!--end of col-->
 </div>
+
 
 <!-- Carousel of sales -->
 <h3>Les produits les plus vendus</h3>

@@ -11,20 +11,13 @@
     }
 
     public function index(){
-      // Get products
-      // $posts = $this->postModel->getProducts();
-      // $categories = $this->productModel->getCategories();
-      // $products = $this->productModel->getProducts();
-
-      // $data = [
-      //   'categories' => $categories,
-      //   'products' => $products
-      // ];
-
+ 
+      $categories = $this->productModel->getCategories();
       $sales = $this->productModel->getProductsBySales(6);
       $consultations = $this->productModel->getProductsByconsultations(6);
 
       $data = [
+        'categories' => $categories,
         'sales' => $sales,
         'consultations' => $consultations
       ];
@@ -33,8 +26,7 @@
     }
 
     public function catalogue(){
-      // Get products
-      // $posts = $this->postModel->getProducts();
+
       $categories = $this->productModel->getCategories();
       $products = $this->productModel->getProducts();
 
@@ -72,7 +64,20 @@
 
     }
 
-    
+    public function category($name) {
+      echo 'category : ' . $name . '<br>';
+      $categories = $this->productModel->getCategories();
+      $products = $this->productModel->getProductsByCategoryName($name);
+      print_r($products);
+      $data = [
+        'categories' => $categories,
+        'products' => $products
+      ];
+
+      $this->view('products/catalogue', $data);
+    }
+
+
     public function show($id){
 
       $product = $this->productModel->getProductById($id);
@@ -90,9 +95,10 @@
         // echo 'Exception reçue : ',  $e->getMessage(), "\n";
       }
       
-
       $this->view('products/show', $data);
     }
+
+
 
 
   }

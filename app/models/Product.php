@@ -67,7 +67,7 @@
                         FROM products 
                         INNER JOIN categories 
                         ON products.category_id = categories.id
-                        WHERE categories.name in (":categoryName");');
+                        WHERE categories.name like :categoryName');
       
       $this->db->bind(':categoryName', $categoryName);
       $results = $this->db->resultSet();
@@ -83,7 +83,7 @@
                         FROM products 
                         INNER JOIN categories 
                         ON products.category_id = categories.id
-                        WHERE categories.id in (":categoryId");');
+                        WHERE categories.id = :categoryId;');
       
       $this->db->bind(':categoryId', $categoryId);
       $results = $this->db->resultSet();
