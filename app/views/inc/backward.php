@@ -1,0 +1,2 @@
+<a href="<?php echo URLROOT; ?>/product/catalogue" class="btn btn-dark"><i class="fas fa-arrow-circle-left"></i> Retour</a>
+<a href="<?php echo URLROOT; ?>/product/catalogue" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Retour</a>

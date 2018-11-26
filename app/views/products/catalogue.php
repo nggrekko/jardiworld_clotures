@@ -1,9 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
-<?php foreach($data['categories'] as $category) : ?>
-  <p><?php echo $category->name; ?></p>
-<?php endforeach; ?>
-
+<?php require APPROOT . '/views/inc/search.php'; ?>
 
 <div class="card-group">
   

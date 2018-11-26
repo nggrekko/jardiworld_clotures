@@ -1,74 +1,138 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
-<?php print_r($data) ;?>
+<?php require APPROOT . '/views/inc/backward.php'; ?>
 
-<div class="card">
-	<div class="row">
+<div class="row">
 
-		<aside class="col-sm-5 border-right">
-      <img src="<?php echo ASSETSROOT . $data['product']->img_big ?>" alt="Card image cap">
-    </aside>
-    
-    <aside class="col-sm-7">
-      <article class="card-body p-5">
-	      <h3 class="title mb-3"><?php echo $data['product']->productName ?></h3>
-        <p class="price-detail-wrap"> 
-          <span class="price h3 text-warning"> 
-            <span class="currency">US $</span>
-            <span class="num">1299</span>
-          </span> 
-          <span>/per kg</span> 
-        </p> <!-- price-detail-wrap .// -->
-        <dl class="item-property">
-          <dt>Description</dt>
-          <dd><p>Here goes description consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco </p></dd>
-        </dl>
-        <dl class="param param-feature">
-          <dt>Model#</dt>
-          <dd>12345611</dd>
-        </dl>  <!-- item-property-hor .// -->
-        <dl class="param param-feature">
-          <dt>Color</dt>
-          <dd>Black and white</dd>
-        </dl>  <!-- item-property-hor .// -->
-        <dl class="param param-feature">
-          <dt>Delivery</dt>
-          <dd>Russia, USA, and Europe</dd>
-        </dl>  <!-- item-property-hor .// -->
+  <!-- Image -->
+  <div class="col-12 col-lg-6 my-auto">
+      <div class="card bg-transparent border-0">
+          <div class="card-body mx-auto">
+              <!-- <a href="" data-toggle="modal" data-target="#productModal"> -->
+                  <img class="zoom" src="<?php echo ASSETSROOT . $data['product']->img_big ?>" />
+              <!-- </a> -->
+          </div>
+      </div>
+  </div>
 
-        <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
-        <input type="submit" name="envoyer" value="envoyer" onclick="afficher();">
-        <a href="<?php echo URLROOT; ?>/user/basket.php?id=1&quantity=2" class="btn btn-lg btn-outline-primary text-uppercase">
-          <i class="fas fa-shopping-cart"></i> Add to cart
-        </a>
+  <!-- Add to cart -->
+  <div class="col-12 col-lg-6 add_to_cart_block">
+    <div class="card bg-transparent mb-3 border-0">
+      <div class="card-body">
 
+        <h3 class="title mb-3"><?php echo $data['product']->productName ?></h3>
+
+        <p class=""><span class="">Référence : <?php echo $data['product']->reference ?></span></p> 
+        <p class=""><span class="">Consultations : <?php echo $data['product']->consultations ?></span></p> 
+
+
+        <p class="title mb-3">Prix : <?php echo $data['product']->prix ?> &euro;</p>
+
+
+        <!-- Form -->
         <form action="<?php echo URLROOT; ?>/basket/addToBasket" method="post">
-        
+
           <?php if($data['product']->stock>0) : ?>
 
-            <input type="hidden" name="id" value="<?php echo $data['product']->productId; ?>"><br>
-            <select type="quantity" name="quantity">
-              <?php for ($i = 1; $i <= $data['product']->stock ; $i++) : ?>
-                <option value="<?php echo $i?>"><?php echo $i?></option>
-              <?php endfor; ?>
-            </select>
+            <input type="hidden" name="id" value="<?php echo $data['product']->productId; ?>">
 
-            <input type="submit" value="GO" class="btn btn-success btn-block">
+            <div class="form-group">
+              <label for="colors">Quantité : </label>
+              <select type="quantity" name="quantity" class="custom-select" id="colors">
+
+                <?php for ($i = 1; $i <= $data['product']->stock ; $i++) : ?>
+                  <?php if($i == 1) : ?>
+                    <option selected value="<?php echo $i?>"><?php echo $i?></option>
+                  <?php else : ?>
+                    <option value="<?php echo $i?>"><?php echo $i?></option>
+                  <?php endif; ?>
+                <?php endfor; ?>
+                
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-lg text-uppercase">
+              <i class="fa fa-shopping-cart"></i> Ajouter au panier
+            </button>
 
           <?php else : ?>
-
-            <span>Rupture de stock</span>
-
+            <h3><strong class="text-danger">Rupture de stock</strong></h3>
           <?php endif; ?>
 
         </form>
 
+      </div>
+    </div>
+  </div>
+</div>
 
-      </article> <!-- card-body.// -->
-		</aside> <!-- col.// -->
-	</div> <!-- row.// -->
-</div> <!-- card.// -->
+
+<div class="row">
+  <!-- Description -->
+  <div class="col-12">
+    <div class="card bg-transparent mb-3 border-0">
+      <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-align-justify"></i> Détails du produit</div>
+      <div class="card-body">
+
+        <?php if($data['product']->description != "") : ?>
+        <p class="card-text">
+          <strong>Description : </strong>
+          <?php echo $data['product']->description ?>
+        </p>
+        <?php endif; ?>
+
+        <?php if($data['product']->composants != "") : ?>
+        <p class="card-text">
+          <strong>Composants : </strong>
+          <?php echo $data['product']->composants ?>
+        </p>
+        <?php endif; ?>
+
+        <?php if($data['product']->montage != "") : ?>
+        <p class="card-text">
+          <strong>Montage : </strong>
+          <?php echo $data['product']->montage ?>
+        </p>
+        <?php endif; ?>
+
+        <?php if($data['product']->caracteristiques != "") : ?>
+        <p class="card-text">
+          <strong>Caractéristiques : </strong>
+          <?php echo $data['product']->caracteristiques ?>
+        </p>
+        <?php endif; ?>
+
+        <?php if($data['product']->dimensions != "") : ?>
+        <p class="card-text">
+          <strong>Dimensions : </strong>
+          <?php echo $data['product']->dimensions ?>
+        </p>
+        <?php endif; ?>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal image -->
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel"><?php echo $data['product']->productName ?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img class="img-fluid" src="<?php echo ASSETSROOT . $data['product']->img_big ?>" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>

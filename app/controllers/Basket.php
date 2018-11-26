@@ -10,17 +10,18 @@
     public function index() {
       if (isLoggedIn()) {
 
+        $data = array();
         // init empty basket
-        if(empty($_SESSION['basket'])) {
-
-          $this->view('basket/index', $_SESSION['basket']);
-        }
-
-        else {
+        if(!empty($_SESSION['basket'])) {
 
           $data = $_SESSION['basket'];
 
+          echo 'Basket : ';
+          print_r($data); echo '<br>';
+
           $idList = getListValuesToQuery($data,'id');
+
+          echo 'idList : '. $idList . '<br>';
 
           $dataset = $this->productModel->getProductsByIdList($idList);
 
@@ -40,9 +41,9 @@
           }
           echo '<br>$dataset2 trans: ';
           print_r($dataset2); echo '<br>';
-          $_SESSION['basket'] = $dataset2;
-          $this->view('basket/index', $dataset2);
+          $data = $dataset2;
         }
+        $this->view('basket/index', $data);
       }
       else {
         redirect('users/login');
@@ -65,16 +66,17 @@
 
         // basket is empty
         if (empty($_SESSION['basket'])) {
-
+          echo 'Basket is empty <br>';
           array_push($_SESSION['basket'],$newItem);
           print_r($_SESSION['basket']);
           
           // redirect('products/show/'.$newItem['id']);
-          redirect('basket/index');
+          redirect('products');
         }
 
         // basket has products, check if basket already contains the product to update quantity
         else {
+          echo 'Basket is not empty<br>';
           $found = false;
           $index = 0;
 
@@ -89,14 +91,16 @@
 
           // id found in basket, update quantity
           if ($found) {
+            echo 'Item found in basket<br>';
             $_SESSION['basket'][$index]['quantity'] = $newItem['quantity'];
           } 
           else {
+            echo 'Item not found in basket<br>';
             array_push($_SESSION['basket'],$newItem);
           }
-
-          // redirect('users/basket');
-          redirect('products/show/' . $newItem['id']);
+          print_r($_SESSION['basket']);
+          redirect('products');
+          // redirect('products/show/' . $newItem['id']);
         }
       }
       // not loggedin

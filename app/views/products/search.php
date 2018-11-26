@@ -1,5 +1,8 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
+<?php require APPROOT . '/views/inc/backward.php'; ?>
+
+
 <h3>Mot-clé recherché : <?php echo $data['keyword']; ?></h3>
 
 <?php foreach($data['categories'] as $category) : ?>
