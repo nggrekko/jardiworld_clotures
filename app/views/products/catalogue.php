@@ -16,9 +16,9 @@
     
     <?php foreach($data['products'] as $product) : ?>
       <div class="col-md-3 mb-4">
-        <div class="card" style="max-width:250px">
+        <div class="card">
         
-          <img class="card-img-top" src="<?php echo ASSETSROOT . $product->img_big ?>" alt="Card image cap">
+          <img class="card-img-top" style="max-width:250px;  max-height:250px;  height: auto; " src="<?php echo ASSETSROOT . $product->img_big ?>" alt="Card image cap">
 
           <div class="card-body">
             <h5 class="card-title"><?php echo $product->productName ?></h5>
@@ -37,7 +37,5 @@
   </div>
 
 <?php endif; ?>
-
-
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>
