@@ -2,6 +2,9 @@
 
 <?php require APPROOT . '/views/inc/backward.php'; ?>
 
+<!-- Message d'info -->
+<?php flash('ajout_panier'); ?>
+
 <div class="row">
 
   <!-- Image -->
@@ -115,24 +118,24 @@
 </div>
 
 <!-- Modal image -->
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="productModalLabel"><?php echo $data['product']->productName ?></h5>
+                <h5 class="modal-title" id="productModalLabel"><?php //echo $data['product']->productName ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <img class="img-fluid" src="<?php echo ASSETSROOT . $data['product']->img_big ?>" />
+                <img class="img-fluid" src="<?php //echo ASSETSROOT . $data['product']->img_big ?>" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>

@@ -31,32 +31,32 @@
 
         // Validate Email
         if(empty($data['email'])){
-          $data['email_err'] = 'Pleae enter email';
+          $data['email_err'] = 'Entrez une adresse email';
         } else {
           // Check email
           if($this->userModel->findUserByEmail($data['email'])){
-            $data['email_err'] = 'Email is already taken';
+            $data['email_err'] = 'Email déjà utilisé';
           }
         }
 
         // Validate Name
         if(empty($data['name'])){
-          $data['name_err'] = 'Pleae enter name';
+          $data['name_err'] = 'Entrez un nom';
         }
 
         // Validate Password
         if(empty($data['password'])){
-          $data['password_err'] = 'Pleae enter password';
+          $data['password_err'] = 'Entrez un mot de passe';
         } elseif(strlen($data['password']) < 6){
-          $data['password_err'] = 'Password must be at least 6 characters';
+          $data['password_err'] = 'Le mot de passe doit contenir au moins 6 caractères';
         }
 
         // Validate Confirm Password
         if(empty($data['confirm_password'])){
-          $data['confirm_password_err'] = 'Pleae confirm password';
+          $data['confirm_password_err'] = 'Confirmez votre mot de passe';
         } else {
           if($data['password'] != $data['confirm_password']){
-            $data['confirm_password_err'] = 'Passwords do not match';
+            $data['confirm_password_err'] = 'Les mots de passe ne sont pas les mêmes';
           }
         }
 
@@ -69,10 +69,10 @@
 
           // Register User
           if($this->userModel->register($data)){
-            flash('register_success', 'You are registered and can log in');
+            flash('new_user', 'Vous êtes inscrit');
             redirect('users/login');
           } else {
-            die('Something went wrong');
+            die('Erreur inscription');
           }
 
         } else {
@@ -115,12 +115,12 @@
 
         // Validate Email
         if(empty($data['email'])){
-          $data['email_err'] = 'Pleae enter email';
+          $data['email_err'] = 'Entrez un email';
         }
 
         // Validate Password
         if(empty($data['password'])){
-          $data['password_err'] = 'Please enter password';
+          $data['password_err'] = 'Entrez un mot de passe';
         }
 
         // Check for user/email
@@ -128,7 +128,7 @@
           // User found
         } else {
           // User not found
-          $data['email_err'] = 'No user found';
+          $data['email_err'] = 'Aucun utilistateur trouvé';
         }
 
         // Make sure errors are empty
@@ -141,7 +141,7 @@
             // Create Session
             $this->createUserSession($loggedInUser);
           } else {
-            $data['password_err'] = 'Password incorrect';
+            $data['password_err'] = 'Mot de passe incorrect';
 
             $this->view('users/login', $data);
           }

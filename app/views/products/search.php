@@ -2,15 +2,17 @@
 
 <?php require APPROOT . '/views/inc/backward.php'; ?>
 
+<?php if(empty($data['products'])) : ?>
 
-<h3>Mot-clé recherché : <?php echo $data['keyword']; ?></h3>
+  <div class="jumbotron jumbotron-flud text-center">
+      <div class="container">
+      <h1 class="display-3">Aucun produit trouvé pour la recherche : <?php echo $data['keyword']; ?></h1>
+    </div>
+  </div> 
 
-<?php foreach($data['categories'] as $category) : ?>
-  <p><?php echo $category->name; ?></p>
-<?php endforeach; ?>
+<?php else : ?>
 
-<?php if(count($data['products'])>0) : ?>
-
+  <h3 class="mb-3">Mot-clé recherché : <?php echo $data['keyword']; ?></h3>
   <div class="card-group">
     <?php foreach($data['products'] as $product) : ?>
       <div class="col-md-3 mb-4">
@@ -29,13 +31,6 @@
     <?php endforeach; ?>
   </div>
 
-<?php else : ?>
-
-  <span>Aucun produit trouvé</span>
-
 <?php endif; ?>
-
-
-
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>

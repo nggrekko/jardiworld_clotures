@@ -18,12 +18,28 @@
       </ul>
       
       <ul class="navbar-nav ml-auto">
+        <!-- <form class="form-inline my-2 my-lg-0" action="<?php //echo URLROOT; ?>/products/search" method="post">
+          <div class="input-group input-group-sm">
+              <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Rechercher un produit">
+              <div class="input-group-append">
+                  <button type="submit" class="btn btn-secondary btn-number">
+                      <i class="fa fa-search"></i>
+                  </button>
+              </div>
+          </div>
+        </form> -->
+
         <?php if(isset($_SESSION['user_id'])) : ?>
           <li class="nav-item">
             <a class="nav-link" href="#"><?php echo $_SESSION['user_name']; ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo URLROOT; ?>/basket/index">Panier</a>
+            <a class="mt-1 btn btn-success btn-sm " href="<?php echo URLROOT; ?>/basket/index">
+              <i class="fa fa-shopping-cart"></i> Panier
+              <span class="badge badge-light">
+                <?php echo count($_SESSION['basket']) ?>
+              </span>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout">Se déconnecter</a>

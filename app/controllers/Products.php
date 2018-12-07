@@ -2,9 +2,9 @@
   class Products extends Controller {
 
     public function __construct(){
-      if(!isLoggedIn()){
-        redirect('users/login');
-      }
+      // if(!isLoggedIn()){
+      //   redirect('users/login');
+      // }
 
       $this->productModel = $this->model('Product');
       $this->userModel = $this->model('User');
@@ -44,12 +44,12 @@
 
       // Init data
       $keyword = trim($_POST['search']);
-      echo 'keyword : ' . $keyword;
+      // echo 'keyword : ' . $keyword;
 
       try {
         $categories = $this->productModel->getCategories();
         $products = $this->productModel->getProductsByKeyword($keyword);
-        print_r($products);
+        // print_r($products);
         $data = [
           'categories' => $categories,
           'products' => $products,
@@ -64,17 +64,28 @@
 
     }
 
-    public function category($name) {
-      echo 'category : ' . $name . '<br>';
+    public function category($id) {
+
       $categories = $this->productModel->getCategories();
-      $products = $this->productModel->getProductsByCategoryName($name);
-      print_r($products);
+      $products = $this->productModel->getProductsByCategoryId($id);
+
       $data = [
         'categories' => $categories,
         'products' => $products
       ];
-
+      // print_r($data);
       $this->view('products/catalogue', $data);
+    }
+
+    public function conseil() {
+
+      $categories = $this->productModel->getCategories();
+
+      $data = [
+        'categories' => $categories
+      ];
+
+      $this->view('products/conseil', $data);
     }
 
 

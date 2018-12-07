@@ -1,4 +1,8 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
+
+  <!-- Message d'info -->
+  <?php flash('new_user'); ?>
+
   <div class="row">
     <div class="col-md-6 mx-auto">
       <div class="card card-body bg-light mt-5">
@@ -19,7 +23,7 @@
           </div>
           <div class="row">
             <div class="col">
-              <input type="submit" value="Login" class="btn btn-success btn-block">
+              <input type="submit" value="Connexion" class="btn btn-success btn-block">
             </div>
             <div class="col">
               <a href="<?php echo URLROOT; ?>/users/register" class="btn btn-light btn-block">Pas de compte ? S'enregistrer</a>
