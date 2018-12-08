@@ -5,10 +5,13 @@
       if(!isLoggedIn()){
         redirect('users/login');
       }
+
+      // models
       $this->userModel = $this->model('User');
       $this->productModel = $this->model('Product');
     }
 
+    // Display basket
     public function index() {
       if (isLoggedIn()) {
 
@@ -16,13 +19,16 @@
         // init empty basket
         if(!empty($_SESSION['basket'])) {
 
+          // get product ids from basket
           $data = $_SESSION['basket'];
           $idList = getListValuesToQuery($data,'id');
 
+          // fetch product by id's
           $dataset = $this->productModel->getProductsByIdList($idList);
           $dataset = convertObjectToArray($dataset);
           $dataset2 = array();
           
+          // add quantity field to each product
           foreach($dataset as $item) {
             foreach ($data as $item2) {
               if ($item['productId'] == $item2['id']) {
@@ -34,14 +40,16 @@
           }
           $data = $dataset2;
         }
+        // print_r($data);
         $this->view('basket/index', $data);
       }
+      // not loggedin
       else {
         redirect('users/login');
       }
     }
 
-    // Add POST item to basket
+    // add post item to session basket
     public function addToBasket() {
 
       if (isLoggedIn()) {
@@ -92,6 +100,7 @@
       }
     }
 
+    // update quantity of a product in basket
     public function updateQuantity() {
       if (isLoggedIn()) {
 
@@ -126,7 +135,6 @@
 
         flash('update_quantite', 'Quantité du produit mis à jour');
         redirect('basket/index');
-        
       }
       // not loggedin
       else {

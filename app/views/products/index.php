@@ -22,7 +22,7 @@
       <?php for($i=0 ; $i <3 ; $i++): ?>
         <div class="col-xs-4 col-sm-4 col-md-4 mb-5">
           <a href="<?php echo URLROOT; ?>/products/show/<?php echo $data['sales'][$i]->productId; ?>" onclick=abc(this) class="slider_info">
-            <img class="img-fluid card-img-top rounded" src="<?php echo ASSETSROOT . $data['sales'][$i]->img_big ?>" alt="Card image cap">
+            <img class="img-fluid card-img-top rounded " style="max-height:250px;" src="<?php echo ASSETSROOT . $data['sales'][$i]->img_big ?>" alt="Card image cap">
             <div class="card-img-overlay t_img">
               <span class="float-left text-light bg-dark px-1"><?php echo $data['sales'][$i]->productName ?></span>
             </div>
@@ -35,7 +35,7 @@
       <?php for($i=3 ; $i <6 ; $i++): ?>
         <div class="col-xs-4 col-sm-4 col-md-4 mb-5">
           <a href="<?php echo URLROOT; ?>/products/show/<?php echo $data['sales'][$i]->productId; ?>" onclick=abc(this) class="slider_info">
-            <img class="img-fluid card-img-top rounded" src="<?php echo ASSETSROOT . $data['sales'][$i]->img_big ?>" alt="Card image cap">
+            <img class="img-fluid card-img-top rounded " style="max-height:250px;" src="<?php echo ASSETSROOT . $data['sales'][$i]->img_big ?>" alt="Card image cap">
             <div class="card-img-overlay t_img">
               <span class="float-left text-light bg-dark px-1"><?php echo $data['sales'][$i]->productName ?></span>
             </div>
@@ -75,7 +75,7 @@
       <?php for($i=0 ; $i <3 ; $i++): ?>
         <div class="col-xs-4 col-sm-4 col-md-4 mb-5">
           <a href="<?php echo URLROOT; ?>/products/show/<?php echo $data['consultations'][$i]->productId; ?>" onclick=abc(this) class="slider_info">
-            <img class="img-fluid card-img-top rounded" src="<?php echo ASSETSROOT . $data['consultations'][$i]->img_big ?>" alt="Card image cap">
+            <img class="img-fluid card-img-top rounded" style="max-height:250px;" src="<?php echo ASSETSROOT . $data['consultations'][$i]->img_big ?>" alt="Card image cap">
             <div class="card-img-overlay t_img">
               <span class="float-left text-light bg-dark px-1"><?php echo $data['consultations'][$i]->productName ?></span>
             </div>
@@ -88,7 +88,7 @@
       <?php for($i=3 ; $i <6 ; $i++): ?>
         <div class="col-xs-4 col-sm-4 col-md-4 mb-5">
           <a href="<?php echo URLROOT; ?>/products/show/<?php echo $data['consultations'][$i]->productId; ?>" onclick=abc(this) class="slider_info">
-            <img class="img-fluid card-img-top rounded" src="<?php echo ASSETSROOT . $data['consultations'][$i]->img_big ?>" alt="Card image cap">
+            <img class="img-fluid card-img-top rounded" style="max-height:250px;" src="<?php echo ASSETSROOT . $data['consultations'][$i]->img_big ?>" alt="Card image cap">
             <div class="card-img-overlay t_img">
               <span class="float-left text-light bg-dark px-1"><?php echo $data['consultations'][$i]->productName ?></span>
             </div>

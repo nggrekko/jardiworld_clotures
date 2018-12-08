@@ -2,19 +2,16 @@
   class Products extends Controller {
 
     public function __construct(){
-      // if(!isLoggedIn()){
-      //   redirect('users/login');
-      // }
-
       $this->productModel = $this->model('Product');
       $this->userModel = $this->model('User');
     }
 
+    // display carrousel
     public function index(){
  
       $categories = $this->productModel->getCategories();
-      $sales = $this->productModel->getProductsBySales(6);
-      $consultations = $this->productModel->getProductsByconsultations(6);
+      $sales = $this->productModel->getProductsBySales(6); // 6 produits les plus vendus
+      $consultations = $this->productModel->getProductsByconsultations(6); // 6 produits les plus consultés
 
       $data = [
         'categories' => $categories,
@@ -25,6 +22,7 @@
       $this->view('products/index', $data);
     }
 
+    // display catalogue
     public function catalogue(){
 
       $categories = $this->productModel->getCategories();
@@ -38,18 +36,18 @@
       $this->view('products/catalogue', $data);
     }
 
+    // display result of search by keyword
     public function search(){
 
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
       // Init data
       $keyword = trim($_POST['search']);
-      // echo 'keyword : ' . $keyword;
 
       try {
         $categories = $this->productModel->getCategories();
         $products = $this->productModel->getProductsByKeyword($keyword);
-        // print_r($products);
+
         $data = [
           'categories' => $categories,
           'products' => $products,
@@ -64,6 +62,7 @@
 
     }
 
+    // display products by categories
     public function category($id) {
 
       $categories = $this->productModel->getCategories();
@@ -73,22 +72,11 @@
         'categories' => $categories,
         'products' => $products
       ];
-      // print_r($data);
+
       $this->view('products/catalogue', $data);
     }
 
-    public function conseil() {
-
-      $categories = $this->productModel->getCategories();
-
-      $data = [
-        'categories' => $categories
-      ];
-
-      $this->view('products/conseil', $data);
-    }
-
-
+    // display 1 product by id
     public function show($id){
 
       $product = $this->productModel->getProductById($id);
@@ -97,19 +85,13 @@
         'product' => $product
       ];
 
-      // update consultations
-
+      // increase number of views
       try {
         $response = $this->productModel->addProductConsultation($id);
-        // echo $response;
       } catch (Exception $e) {
         // echo 'Exception reçue : ',  $e->getMessage(), "\n";
       }
       
       $this->view('products/show', $data);
     }
-
-
-
-
   }

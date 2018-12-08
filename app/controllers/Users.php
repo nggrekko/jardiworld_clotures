@@ -170,7 +170,6 @@
       $_SESSION['user_email'] = $user->email;
       $_SESSION['user_name'] = $user->name;
       $_SESSION['basket'] =array();
-      // redirect('posts');
       redirect('');
     }
 

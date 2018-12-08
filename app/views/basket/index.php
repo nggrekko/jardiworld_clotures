@@ -31,6 +31,7 @@
                   <table class="table table-striped">
                       <thead>
                           <tr>
+                              <th scope="col">Aperçu</th>
                               <th scope="col">Produit</th>
                               <th scope="col">Prix unitaire</th>
                               <th scope="col">Quantité</th>
@@ -43,6 +44,7 @@
                         <!-- Display all products -->
                         <?php foreach($data as $item) : ?>
                           <tr>
+                              <td><img style="max-width:70px;max-height:70px;width:auto,height:auto" src="<?php echo ASSETSROOT . $item['img_vignette'] ?>" /></td>
                               <td><?php echo $item['productName']?></td>
                               <td><?php echo $item['prix']?> &euro;</td>
                               <td>
